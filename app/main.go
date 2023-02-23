@@ -8,9 +8,12 @@ import (
 func main() {
 	e := echo.New()
 
-	h := router.NewSqlHandler()
+	h, err := router.NewSqlHandler()
+	if err != nil {
+		panic(err)
+	}
 
-	err := router.SetRoute(e, h)
+	err = router.SetRoute(e, h)
 	if err != nil {
 		panic(err)
 	}

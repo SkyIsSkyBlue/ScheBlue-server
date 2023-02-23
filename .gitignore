@@ -25,4 +25,4 @@ app/tmp
 *.code-workspace
 
 # db
-sql/data
+mysql/data
