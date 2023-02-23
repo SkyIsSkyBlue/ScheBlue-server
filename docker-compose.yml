@@ -1,0 +1,34 @@
+version: "3"
+
+services:
+  app:
+    build: .
+    tty: true
+    ports:
+      - "8080:8080"
+    restart: always
+    volumes:
+      - ./app:/go/src/app
+    environment:
+      MARIADB_HOSTNAME: mysql
+      MARIADB_USERNAME: user
+      MARIADB_PASSWORD: password
+      MARIADB_DATABASE: db_scheblue
+    depends_on:
+      - sql
+
+  sql:
+    build: ./sql
+    platform: linux/x86_64
+    restart: always
+    volumes:
+      - ./sql/init:/docker-entrypoint-initdb.d
+      - ./sql/data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: pass
+      MYSQL_DATABASE: db_scheblue
+      MYSQL_USERNAME: user
+      MYSQL_PASSWORD: password
+    ports:
+      - "3306:3306"
+    container_name: sql
