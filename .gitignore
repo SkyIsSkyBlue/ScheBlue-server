@@ -14,8 +14,15 @@
 # Dependency directories (remove the comment below to include it)
 # vendor/
 
+# temp
+app/tmp
+
 # MacOs
 .DS_Store
 
 # vsocde
 .vscode
+*.code-workspace
+
+# db
+sql/data
