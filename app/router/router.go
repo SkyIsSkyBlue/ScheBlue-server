@@ -10,8 +10,10 @@ func SetRoute(e *echo.Echo, h SqlHandler) error {
 	e.Use(middleware.Recover())
 
 	api := e.Group("/api/v1")
-
-	api.GET("/ping", h.Ping)
+	{
+		api.GET("/ping", h.Ping)
+		api.GET("/sqlping", h.SqlPing)
+	}
 
 	return nil
 }
