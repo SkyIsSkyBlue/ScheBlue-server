@@ -10,4 +10,4 @@ WORKDIR /go/src/app
 RUN go install github.com/cosmtrek/air@latest
 
 # wait for sql
-ENTRYPOINT dockerize -timeout 60s -wait tcp://sql:3306 air -c .air.toml
+ENTRYPOINT dockerize -timeout 60s -wait tcp://mysql:3306 air -c .air.toml
