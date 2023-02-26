@@ -31,9 +31,6 @@ jobs:
     name: Lint
     runs-on: ubuntu-latest
     steps:
-      - name: change directory
-        run: cd ./app
-    
       - uses: actions/checkout@v3
       - name: Run linters
         uses: reviewdog/action-golangci-lint@v2
