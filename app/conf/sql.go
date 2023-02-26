@@ -1,19 +1,21 @@
 package conf
 
+import "os"
+
 func SqlDatabase() string {
-	return "db_scheblue"
+	return os.Getenv("MARIADB_DATABASE")
 }
 
 func SqlUsername() string {
-	return "user"
+	return os.Getenv("MARIADB_USERNAME")
 }
 
 func SqlPassword() string {
-	return "password"
+	return os.Getenv("MARIADB_PASSWORD")
 }
 
 func SqlHostname() string {
-	return "mysql"
+	return os.Getenv("MARIADB_HOSTNAME")
 }
 
 func SqlPort() uint {
