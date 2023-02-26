@@ -11,7 +11,7 @@ services:
       - ./app:/go/src/app
     environment:
       MARIADB_HOSTNAME: mysql
-      MARIADB_USER: user
+      MARIADB_USERNAME: user
       MARIADB_PASSWORD: password
       MARIADB_DATABASE: db_scheblue
     depends_on:
