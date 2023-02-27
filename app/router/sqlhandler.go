@@ -36,13 +36,16 @@ func migration(db *gorm.DB) error {
 }
 
 func initPing(db *gorm.DB) {
-	db.Create(
-		&model.SqlPing{
-			PingId:    "sqlPing",
-			PongValue: "sqlPong",
-		})
+	var existingPing model.SqlPing
+	db.Where(&model.SqlPing{PingId: "sqlPing"}).First(&existingPing)
+	if existingPing.PingId == "" {
+		db.Create(
+			&model.SqlPing{
+				PingId:    "sqlPing",
+				PongValue: "sqlPong",
+			})
+	}
 }
-
 func NewSqlHandler() (SqlHandler, error) {
 	var sqlh SqlHandler
 	var err error
