@@ -1,6 +1,7 @@
 package router
 
 import (
+	"errors"
 	"fmt"
 
 	"github.com/SkyIsSkyBlue/ScheBlue-server/conf"
@@ -37,8 +38,7 @@ func migration(db *gorm.DB) error {
 
 func initPing(db *gorm.DB) {
 	var existingPing model.SqlPing
-	db.Where(&model.SqlPing{PingId: "sqlPing"}).First(&existingPing)
-	if existingPing.PingId == "" {
+	if err := db.Where(&model.SqlPing{PingId: "sqlPing"}).First(&existingPing).Error; errors.Is(err, gorm.ErrRecordNotFound) {
 		db.Create(
 			&model.SqlPing{
 				PingId:    "sqlPing",
