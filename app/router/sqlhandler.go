@@ -37,8 +37,7 @@ func migration(db *gorm.DB) error {
 }
 
 func initPing(db *gorm.DB) {
-	var existingPing model.SqlPing
-	if err := db.Where(&model.SqlPing{PingId: "sqlPing"}).First(&existingPing).Error; errors.Is(err, gorm.ErrRecordNotFound) {
+	if err := db.Where(&model.SqlPing{PingId: "sqlPing"}).Error; errors.Is(err, gorm.ErrRecordNotFound) {
 		db.Create(
 			&model.SqlPing{
 				PingId:    "sqlPing",
